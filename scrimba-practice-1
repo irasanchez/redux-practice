@@ -7,6 +7,8 @@
  * 2. Reducer to handle these actions 👆🏻
  */
 
+ const redux = require("redux")
+
 //initial state
 const initialState = {
     count: 0
