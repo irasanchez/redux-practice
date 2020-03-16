@@ -15,14 +15,16 @@ const initialState = {
 }
 
 //action creators
-function increment () {
+function increment (amount=1) {
     return {
         type: "INCREMENT"
+        payload: amount
     }
 }
-function decrement () {
+function decrement (amount=1) {
     return {
         type: "DECREMENT"
+        payload: amount
     }
 }
 function double () {
@@ -37,15 +39,15 @@ function halve () {
 }
 
 //reducer
-function reducer (state = initialState, {type}) {
+function reducer (state = initialState, {type, payload}) {
     switch(type) {
         case "INCREMENT":
             return {
-                count: state.count + 1
+                count: state.count + payload
             }
         case "DECREMENT":
             return {
-                count: state.count - 1
+                count: state.count - payload
             }
         case "DOUBLE":
             return {
