@@ -15,7 +15,11 @@ const initialState = {
     favoriteThings: [],
     youtubeVideo: {
         title: "",
-        viewCount: 0
+        viewCount: 0,
+        votes: {
+          up: 0, 
+          down: 0
+        }
     }
 }
 
@@ -60,6 +64,18 @@ function setVideoTitle(title) {
   }
 }
 
+function upVote() {
+  return {
+    type: "UPVOTE"
+  }
+}
+
+function downVote() {
+  return {
+    type: "DOWNVOTE"
+  }
+}
+
 //reducer
 function reducer (state = initialState, {type, payload}) {
     switch(type) {
@@ -94,10 +110,33 @@ function reducer (state = initialState, {type, payload}) {
             return {
               ...state,
               youtubeVideo: {
-                ...state.video,
+                ...state.youtubeVideo,
                 title: payload
               }
             }
+        case "UPVOTE":
+            return {
+              ...state,
+              youtubeVideo: {
+                ...state.youtubeVideo,
+                votes: {
+                  ...state.youtubeVideo.votes,
+                  up: state.youtubeVideo.votes.up + 1
+                }
+              }
+            }
+        case "DOWNVOTE":
+            return {
+              ...state,
+              youtubeVideo: {
+                ...state.youtubeVideo,
+                votes: {
+                  ...state.youtubeVideo.votes,
+                  down: state.youtubeVideo.votes.down + 1
+                }
+              }
+            }
+        
         default:
             return state
     }
@@ -116,3 +155,6 @@ store.dispatch(change(-1))
 store.dispatch(halve())
 store.dispatch(addFavoriteThing("Raindrops on roses"))
 store.dispatch(addFavoriteThing("Whiskers on kittens"))
+store.dispatch(setVideoTitle("Learn Redux"))
+store.dispatch(upVote())
+store.dispatch(downVote())
