@@ -15,18 +15,13 @@ const initialState = {
 }
 
 //action creators
-function increment (amount=1) {
+function change (amount=1) {
     return {
-        type: "INCREMENT"
+        type: "CHANGE_COUNT",
         payload: amount
     }
 }
-function decrement (amount=1) {
-    return {
-        type: "DECREMENT"
-        payload: amount
-    }
-}
+
 function double () {
     return {
         type: "DOUBLE"
@@ -41,13 +36,9 @@ function halve () {
 //reducer
 function reducer (state = initialState, {type, payload}) {
     switch(type) {
-        case "INCREMENT":
+        case "CHANGE_COUNT":
             return {
                 count: state.count + payload
-            }
-        case "DECREMENT":
-            return {
-                count: state.count - payload
             }
         case "DOUBLE":
             return {
@@ -67,9 +58,9 @@ store.subscribe(() => {
   console.log(store.getState())
 })
 
-store.dispatch(increment())
-store.dispatch(increment())
-store.dispatch(increment())
+store.dispatch(change(10))
+store.dispatch(change(-3))
+store.dispatch(change(5))
 store.dispatch(double())
-store.dispatch(decrement())
+store.dispatch(change(-1))
 store.dispatch(halve())
