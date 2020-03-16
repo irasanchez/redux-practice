@@ -57,3 +57,13 @@ function reducer (state = initialState, {type}) {
             }
     }
 }
+
+const store = redux.createStore(reducer)
+store.subscribe(() => {
+  console.log(store.getState())
+})
+
+store.dispatch(increment())
+store.dispatch(decrement())
+store.dispatch(double())
+store.dispatch(halve())
