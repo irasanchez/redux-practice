@@ -12,7 +12,11 @@ const redux = require("redux")
 //initial state
 const initialState = {
     count: 0,
-    favoriteThings: []
+    favoriteThings: [],
+    youtubeVideo: {
+        title: "",
+        viewCount: 0
+    }
 }
 
 //action creators
@@ -49,6 +53,13 @@ function removeFavoriteThing(thing){
   }
 }
 
+function setVideoTitle(title) {
+  return {
+    type: "SET_VIDEO_TITLE",
+    payload: title
+  }
+}
+
 //reducer
 function reducer (state = initialState, {type, payload}) {
     switch(type) {
@@ -78,6 +89,14 @@ function reducer (state = initialState, {type, payload}) {
               favoriteThings: state.favoriteThings.filter(thing=>{
                 return thing !== payload
               })
+            }
+        case "SET_VIDEO_TITLE":
+            return {
+              ...state,
+              youtubeVideo: {
+                ...state.video,
+                title: payload
+              }
             }
         default:
             return state
