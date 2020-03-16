@@ -47,15 +47,23 @@ function reducer (state = initialState, {type, payload}) {
     switch(type) {
         case "CHANGE_COUNT":
             return {
+                ...state,
                 count: state.count + payload
             }
         case "DOUBLE":
             return {
+                ...state,
                 count: state.count * 2
             }
         case "HALVE":
             return {
+                ...state,
                 count: Math.round(state.count / 2)
+            }
+        case "ADD_FAVORITE_THING":
+            return {
+              ...state,
+              favoriteThings: [...state.favoriteThings, payload]
             }
         default:
             return state
