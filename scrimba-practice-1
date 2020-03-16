@@ -55,6 +55,8 @@ function reducer (state = initialState, {type}) {
             return {
                 count: Math.round(state.count / 2)
             }
+        default:
+            return state
     }
 }
 
