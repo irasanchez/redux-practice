@@ -42,6 +42,13 @@ function addFavoriteThing(thing) {
     }
 }
 
+function removeFavoriteThing(thing){
+  return {
+    type: "REMOVE_FAVORITE_THING",
+    payload: thing
+  }
+}
+
 //reducer
 function reducer (state = initialState, {type, payload}) {
     switch(type) {
@@ -64,6 +71,13 @@ function reducer (state = initialState, {type, payload}) {
             return {
               ...state,
               favoriteThings: [...state.favoriteThings, payload]
+            }
+        case "REMOVE_FAVORITE_THING":
+            return {
+              ...state,
+              favoriteThings: state.favoriteThings.filter(thing=>{
+                return thing !== payload
+              })
             }
         default:
             return state
