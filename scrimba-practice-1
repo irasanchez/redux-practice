@@ -7,11 +7,12 @@
  * 2. Reducer to handle these actions 👆🏻
  */
 
- const redux = require("redux")
+const redux = require("redux")
 
 //initial state
 const initialState = {
-    count: 0
+    count: 0,
+    favoriteThings: []
 }
 
 //action creators
@@ -27,9 +28,17 @@ function double () {
         type: "DOUBLE"
     }
 }
+
 function halve () {
     return {
         type: "HALVE"
+    }
+}
+
+function addFavoriteThing(thing) {
+    return {
+        type: "ADD_FAVORITE_THING",
+        payload: thing
     }
 }
 
